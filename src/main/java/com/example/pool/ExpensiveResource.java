@@ -2,16 +2,20 @@ package com.example.pool;
 
 @Pooled
 public class ExpensiveResource {
+    private NestedResource nested;
 
-    private ExpensiveResource() {
-        System.out.println("ExpensiveResource created.");
+    ExpensiveResource() {}
+
+    public void setNested(NestedResource nested) {
+        this.nested = nested;
+    }
+
+    public NestedResource getNested() {
+        return nested;
     }
 
     public void use() {
-        System.out.println("Using: " + this);
-    }
-
-    static ExpensiveResource createForPool() {
-        return new ExpensiveResource();
+        System.out.println("ExpensiveResource using nested...");
+        nested.doWork();
     }
 }
